@@ -10,9 +10,6 @@
 
   gtag('config', 'G-W6VLY1QQKH');
 </script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
@@ -33,6 +30,20 @@
             font-weight: bold;
             text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* red text shadow */
         }
+        /* Styling for the popup */
+        .popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 20px;
+            display: none; /* Hidden by default */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -41,12 +52,24 @@
         <p>Press any key.</p>
     </div>
 
+    <!-- The popup message -->
+    <div class="popup" id="popupMessage">You have entered!</div>
+
     <script>
-        // Wait for any key press to remove the welcome message
+        // Wait for any key press to remove the welcome message and show the popup
         document.addEventListener("keydown", function() {
             document.querySelector('.welcome-message').style.display = 'none';
-            // You can add the actual content of your website here
             document.body.style.backgroundColor = "#ffffff"; // change background to white once entered
+
+            // Show the popup
+            let popup = document.getElementById('popupMessage');
+            popup.style.display = 'block';
+
+            // Hide the popup after 3 seconds
+            setTimeout(function() {
+                popup.style.display = 'none';
+            }, 3000);
+
             // Add your website's content here, this is just a placeholder
             let content = document.createElement("div");
             content.innerHTML = "<h1></h1>";

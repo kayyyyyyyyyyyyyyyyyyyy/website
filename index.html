@@ -20,17 +20,16 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: black; /* Fully black background */
+            background-color: black;
             font-family: Arial, sans-serif;
         }
         .welcome-message {
             text-align: center;
             font-size: 24px;
-            color: red; /* Red text */
+            color: red;
             font-weight: bold;
-            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* Red text shadow */
+            text-shadow: 3px 3px 8px red;
         }
-        /* Styling for the popup */
         .popup {
             position: fixed;
             top: 20px;
@@ -49,38 +48,60 @@
 <body>
 
     <div class="welcome-message">
-        <p>Press a key.</p>
+        <p>Press any key to enter the website</p>
     </div>
 
-    <!-- The popup message -->
-    <div class="popup" id="popupMessage">You have entered!</div>
+    <div class="popup" id="popupMessage">You have entered the website!</div>
 
-    <!-- Audio element for the sound -->
     <audio id="enterSound" src="enter-sound.mp3" preload="auto"></audio>
 
     <script>
-        // Wait for any key press to remove the welcome message, show the popup, and play sound
+        let hasEntered = false;
+
+        function enterFullscreen() {
+            let element = document.documentElement; // Fullscreen for the whole page
+            
+            // Check if fullscreen is supported and request it
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) { // Firefox
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { // IE/Edge
+                element.msRequestFullscreen();
+            }
+        }
+
+        // Wait for any key press to remove the welcome message, show the popup, play sound, and go fullscreen
         document.addEventListener("keydown", function() {
-            document.querySelector('.welcome-message').style.display = 'none';
-            document.body.style.backgroundColor = "#ffffff"; // change background to white once entered
+            if (!hasEntered) {  // Check if the user hasn't entered yet
+                document.querySelector('.welcome-message').style.display = 'none';
+                document.body.style.backgroundColor = "#ffff00"; // change background once u enter
 
-            // Show the popup
-            let popup = document.getElementById('popupMessage');
-            popup.style.display = 'block';
+                // Show the popup
+                let popup = document.getElementById('popupMessage');
+                popup.style.display = 'block';
 
-            // Hide the popup after 3 seconds
-            setTimeout(function() {
-                popup.style.display = 'none';
-            }, 3000);
+                // Hide the popup after 3 seconds
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 3000);
 
-            // Play the sound
-            let sound = document.getElementById('enterSound');
-            sound.play();
+                // Play the sound
+                let sound = document.getElementById('enterSound');
+                sound.play();
 
-            // Add your website's content here, this is just a placeholder
-            let content = document.createElement("div");
-            content.innerHTML = "<h1></h1>";
-            document.body.appendChild(content);
+                // Request fullscreen
+                enterFullscreen();
+
+                // Set hasEntered to true to prevent the sound from playing again
+                hasEntered = true;
+
+                let content = document.createElement("div");
+                content.innerHTML = "<h1></h1>";
+                document.body.appendChild(content);
+            }
         });
     </script>
 

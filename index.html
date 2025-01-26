@@ -12,7 +12,7 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>לָן▆</title>
     <style>
         body {
             display: flex;
@@ -20,15 +20,15 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: rgba(0, 0, 0, 0.7); /* black background with transparency */
+            background-color: black; /* Fully black background */
             font-family: Arial, sans-serif;
         }
         .welcome-message {
             text-align: center;
             font-size: 24px;
-            color: red; /* red text */
+            color: red; /* Red text */
             font-weight: bold;
-            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* red text shadow */
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* Red text shadow */
         }
         /* Styling for the popup */
         .popup {
@@ -49,14 +49,17 @@
 <body>
 
     <div class="welcome-message">
-        <p>Press any key.</p>
+        <p>Press a key.</p>
     </div>
 
     <!-- The popup message -->
     <div class="popup" id="popupMessage">You have entered!</div>
 
+    <!-- Audio element for the sound -->
+    <audio id="enterSound" src="enter-sound.mp3" preload="auto"></audio>
+
     <script>
-        // Wait for any key press to remove the welcome message and show the popup
+        // Wait for any key press to remove the welcome message, show the popup, and play sound
         document.addEventListener("keydown", function() {
             document.querySelector('.welcome-message').style.display = 'none';
             document.body.style.backgroundColor = "#ffffff"; // change background to white once entered
@@ -69,6 +72,10 @@
             setTimeout(function() {
                 popup.style.display = 'none';
             }, 3000);
+
+            // Play the sound
+            let sound = document.getElementById('enterSound');
+            sound.play();
 
             // Add your website's content here, this is just a placeholder
             let content = document.createElement("div");

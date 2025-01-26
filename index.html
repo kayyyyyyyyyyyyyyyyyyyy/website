@@ -10,3 +10,44 @@
 
   gtag('config', 'G-W6VLY1QQKH');
 </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press Any Key to Enter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .welcome-message {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-message">
+        <p>Press any key to enter the website</p>
+    </div>
+
+    <script>
+        // Wait for any key press to remove the welcome message
+        document.addEventListener("keydown", function() {
+            document.querySelector('.welcome-message').style.display = 'none';
+            // You can add the actual content of your website here
+            document.body.style.backgroundColor = "#ffffff"; // change background once entered
+            // Add your website's content here, this is just a placeholder
+            let content = document.createElement("div");
+            content.innerHTML = "<h1>Welcome to the website!</h1>";
+            document.body.appendChild(content);
+        });
+    </script>
+
+</body>
+</html>

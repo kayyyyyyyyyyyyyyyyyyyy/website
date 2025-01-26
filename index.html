@@ -10,9 +10,12 @@
 
   gtag('config', 'G-W6VLY1QQKH');
 </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>...</title>
+    <title></title>
     <style>
         body {
             display: flex;
@@ -20,20 +23,22 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: rgba(0, 0, 0, 0.7); /* black background with transparency */
             font-family: Arial, sans-serif;
         }
         .welcome-message {
             text-align: center;
             font-size: 24px;
-            color: #333;
+            color: red; /* red text */
+            font-weight: bold;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* red text shadow */
         }
     </style>
 </head>
 <body>
 
     <div class="welcome-message">
-        <p>Press any key to enter the website</p>
+        <p>Press any key.</p>
     </div>
 
     <script>
@@ -41,7 +46,7 @@
         document.addEventListener("keydown", function() {
             document.querySelector('.welcome-message').style.display = 'none';
             // You can add the actual content of your website here
-            document.body.style.backgroundColor = "#ffffff"; // change background once entered
+            document.body.style.backgroundColor = "#ffffff"; // change background to white once entered
             // Add your website's content here, this is just a placeholder
             let content = document.createElement("div");
             content.innerHTML = "<h1></h1>";

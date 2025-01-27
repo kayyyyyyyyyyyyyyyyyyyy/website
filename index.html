@@ -18,7 +18,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 100%); /* Black to dark transparent */
             position: relative;
             font-family: Arial, sans-serif;
         }
@@ -31,8 +31,21 @@
             z-index: 1;
             width: 100%;
             height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/45-degree-fabric-2.png');
-            background-size: cover;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 10px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh); /* Snowflakes fall vertically */
+            }
         }
 
         #enterPrompt {
@@ -51,7 +64,7 @@
 </head>
 <body>
 
-    <div id="enterPrompt">Press any key</div>
+    <div id="enterPrompt">Awaiting input</div>
     
     <div id="snowflakes"></div>
 
@@ -62,11 +75,8 @@
         function createSnowflake() {
             const snowflake = document.createElement('div');
             snowflake.classList.add('snowflake');
-            snowflake.style.position = 'absolute';
-            snowflake.style.color = 'white';
-            snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
             snowflake.style.left = `${Math.random() * 100}vw`;
-            snowflake.style.opacity = Math.random() * 0.5 + 0.5;
+            snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
             snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
             snowflake.style.animationDelay = `${Math.random() * 5}s`;
             snowflakesContainer.appendChild(snowflake);
@@ -97,7 +107,7 @@
                 document.getElementById('enterPrompt').style.display = 'none';
                 goFullscreen();
                 setTimeout(() => {
-                    prompt('לָן');
+                    prompt('Welcome! Type something to continue...');
                 }, 500);
                 hasEntered = true;
             }
@@ -110,11 +120,12 @@
                 document.getElementById('enterPrompt').style.display = 'none';
                 goFullscreen();
                 setTimeout(() => {
-                    prompt('לָן');
+                    prompt('Welcome! Type something to continue...');
                 }, 500);
                 hasEntered = true;
             }
         });
     </script>
+
 </body>
 </html>
